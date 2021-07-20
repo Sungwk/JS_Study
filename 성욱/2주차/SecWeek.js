@@ -230,7 +230,7 @@ class Rectangle extends Shape{}
 
 class Triangle extends Shape{
 
-    // Overriding >> 자식클래스가 부모클래스에게 상속받은 메소드 중 변경이 필요한 부분만 변경
+    // Overriding >> 자식클래스가 부모클래스에게 상속받은 메소드 중 변경이 필요한 부분만 변경, 재정의
     getArea(){
         return this.width * this.height / 2;
     }
