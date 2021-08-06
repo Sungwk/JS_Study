@@ -118,8 +118,7 @@ const pass = prompt('enter your password');
 login.loginUser(id, pass)
   .then(login.getRoles)
   .catch(console.log)
-  .then(console.log)
-  .catch(console.log);
+  .then(console.log);
 /*
 
 login.loginUser(id, pass, (user) => {
