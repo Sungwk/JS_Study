@@ -84,33 +84,43 @@ printWithDelay(()=>console.log('async!!'), 2000);
 //Callback example
 
 class UserStorage{
-  loginUser(id, password, onSuccess, onError){
-    setTimeout(() => {
-      if(
-        (id === 'ellie' && password === 'dream')||
-        (id === 'coder' && password === 'academy')
-      ) {
-        onSuccess(id);
-      } else {
-        onError(new Error('not found'));
-      }
-    }, 2000); 
+  loginUser(id, password){
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if(
+          (id === 'ellie' && password === 'dream')||
+          (id === 'coder' && password === 'academy')
+        ) {
+          resolve(id);
+        } else {
+          reject(new Error('not found'));
+        }
+      }, 2000);
+    });
   }
 
-  getRoles(user, onSuccess, onError){
-    setTimeout(() => {
-      if(user === 'ellie') {
-        onSuccess({ name: 'ellie', role: 'admin'});
-      } else {
-        onError(new Error('no access'));
-      }
-    })
+  getRoles(user) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if(user === 'ellie') {
+          resolve({ name: 'ellie', role: 'admin'});
+        } else {
+          reject(new Error('no access'));
+        }
+      })
+    })    
   }
 }
 
 const login = new UserStorage();
 const id = prompt('enter your id');
 const pass = prompt('enter your password');
+login.loginUser(id, pass)
+  .then(login.getRoles)
+  .catch(console.log)
+  .then(console.log)
+  .catch(console.log);
+/*
 
 login.loginUser(id, pass, (user) => {
   login.getRoles(user, (userWithRole => { console.log(userWithRole);}, error => {console.log(error)}))
@@ -119,3 +129,4 @@ login.loginUser(id, pass, (user) => {
 
 // 콜백지옥
 // 가독성 떨어짐, 유지보수 어려움
+*/
