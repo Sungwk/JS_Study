@@ -4,7 +4,6 @@
 // #12 / Promise (자바스크립트의 내장객체 / 비동기를 위해 콜백함수 대신 사용 가능한...)
 //===================================================================================================
 
-
 // 1. Producer
 // 기능을 수행한 경우(resolve)와 실패한 경우(reject) 호출할 두가지 콜백함수를 파라미터로 받아서 선언
 // Promise(execute(resolve(), reject()))
@@ -16,7 +15,7 @@ const promise = new Promise((resolve, reject) => {
   
   // 새로운 프로미스가 만들어지는 순간 executer 콜백함수가 실행 됨
   setTimeout(() => {
-    // resolve('ellie');
+    //resolve('ellie');
     reject(new Error('no network'))
   }, 2000);
   
@@ -62,10 +61,12 @@ const getNum = () =>
   new Promise((resolve, reject) => {
     setTimeout(() => resolve(1), 1000);
   });
+
 const NumAddTwo = num =>
   new Promise((resolve, reject) => {
     setTimeout(() => resolve(num+2), 1000);
   });
+  
 const NumMultiplyThree = num =>
   new Promise((resolve, reject) => {
     setTimeout(() => resolve(num * 3), 1000);
@@ -77,7 +78,6 @@ getNum()
   .then(num => NumMultiplyThree(num))
   .catch(error => { return 9999; })
   .then(num => console.log(num));
-
 
 
 //===================================================================================================
@@ -93,7 +93,7 @@ function fetchUser() {
 }
 
 async function fetchUser_2() {
-  return 'elllie';
+  return 'ellie_';
 }
 
 const user = fetchUser();
@@ -116,7 +116,7 @@ async function getApple() {
 }
 
 async function getBanana() {
-  await delay(1000);
+  await delay(3000);
   return 'banana';
 }
 
@@ -138,11 +138,10 @@ function pickAllFruits() {
   return Promise.all([getApple(), getBanana()])
     .then(frutis => frutis.join(' + '));
 }
-
 pickAllFruits().then(console.log);
 
 function pickOnlyOne() {
   return Promise.race([getApple(), getBanana()]);
 }
 
-pickOnlyOne().then(console.log);
+pickOnlyOne().then(console.log); 

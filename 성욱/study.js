@@ -1,25 +1,12 @@
-let text='';
-let i = 0;
+const input = prompt('숫자를 입력하세요','0');
+const number = Number(input);
 
-for (i = 0; i < 10; i++) {
-  for (let k = 9 - i; k >= 0; k--) {
-    text += ' ';
-  }
-  for (let j = 0; j < i * 2 - 1; j++) {
-    text += '*';
-  }
-  text += '\n';
+if(number % 2 === 0){
+ 	alert('짝수입니다.')
 }
-for (i = 8; i >= 0; i--){
-  for (let k = 0; k <= 9-i; k++) {
-    text += ' ';
-  }
-  for (let j = i * 2 - 2; j >=0; j--) {
-    text += '*';
-  }
-  text += '\n';
+else if (number % 2 === 1){
+	alert('홀수입니다.')
 }
-console.log(text);
-
-
- 
+else {
+	alert('숫자를 잘못 입력하였습니다.')
+}
